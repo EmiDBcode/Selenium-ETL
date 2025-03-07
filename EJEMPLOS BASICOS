@@ -1,0 +1,34 @@
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+from selenium.webdriver.common.keys import Keys
+import time
+
+def main():
+    # Inicializar WebDriver (asegúrate de que el ChromeDriver está en tu sistema)
+    driver = webdriver.Chrome()
+    
+    # Abrir Google
+    driver.get("https://www.google.com")
+    time.sleep(2)  # Espera 2 segundos para que cargue la página
+    
+    # Buscar un elemento de entrada (el cuadro de búsqueda)
+    busqueda = driver.find_element(By.NAME, "q")
+    
+    # Escribir en la barra de búsqueda
+    busqueda.send_keys("Selenium con Python")
+    busqueda.send_keys(Keys.RETURN)
+    
+    # Esperar para ver resultados
+    time.sleep(3)
+    
+    # Capturar el título de la página
+    print("Título de la página:", driver.title)
+    
+    # Tomar una captura de pantalla
+    driver.save_screenshot("resultado_busqueda.png")
+    
+    # Cerrar el navegador
+    driver.quit()
+
+if __name__ == "__main__":
+    main()
