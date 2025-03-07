@@ -54,11 +54,6 @@ print("Título de la página:", titulo)
 driver.save_screenshot("captura.png")
 ```
 
-## 🎯 Próximos pasos
-- Interacción con formularios y botones.
-- Esperas dinámicas con `WebDriverWait`.
-- Scraping de datos de páginas web.
-
 ---
 📌 **Este repositorio busca explicar Selenium con ejemplos simples para aprender de manera práctica.**
 
