@@ -1,0 +1,58 @@
+"""
+Este script utiliza Selenium para automatizar una búsqueda en Google.
+
+Funcionalidades:
+- Abre Google en un navegador.
+- Escribe un término de búsqueda y ejecuta la consulta.
+- Imprime el título de la página de resultados.
+- Guarda una captura de pantalla de los resultados.
+- Cierra el navegador automáticamente.
+
+Este código está diseñado con Programación Orientada a Objetos (POO) para hacerlo modular y reutilizable.
+"""
+
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+from selenium.webdriver.common.keys import Keys
+import time
+
+class GoogleSearch:
+    def __init__(self, driver_path="chromedriver"):
+        """Inicializa el WebDriver para controlar el navegador."""
+        self.driver = webdriver.Chrome()
+
+    def abrir_pagina(self, url):
+        """Abre la página web especificada en el navegador."""
+        self.driver.get(url)
+        time.sleep(2)  # Espera 2 segundos para asegurar que la página cargue completamente
+
+    def buscar(self, texto):
+        """Realiza una búsqueda en Google con el texto proporcionado."""
+        busqueda = self.driver.find_element(By.NAME, "q")  # Encuentra la barra de búsqueda por su atributo 'name'
+        busqueda.send_keys(texto)  # Escribe el texto en la barra de búsqueda
+        busqueda.send_keys(Keys.RETURN)  # Presiona Enter para iniciar la búsqueda
+        time.sleep(3)  # Espera 3 segundos para que los resultados carguen
+
+    def obtener_titulo(self):
+        """Devuelve el título de la página actual."""
+        return self.driver.title
+
+    def capturar_pantalla(self, nombre_archivo="resultado_busqueda.png"):
+        """Guarda una captura de pantalla de la página actual."""
+        self.driver.save_screenshot(nombre_archivo)
+
+    def cerrar(self):
+        """Cierra el navegador y finaliza la sesión de WebDriver."""
+        self.driver.quit()
+
+def main():
+    """Función principal para ejecutar la búsqueda en Google usando Selenium."""
+    google = GoogleSearch()  # Crea una instancia de la clase GoogleSearch
+    google.abrir_pagina("https://www.google.com")  # Abre la página de Google
+    google.buscar("Selenium con Python")  # Realiza la búsqueda de la frase especificada
+    print("Título de la página:", google.obtener_titulo())  # Imprime el título de la página actual
+    google.capturar_pantalla()  # Toma una captura de pantalla de los resultados de búsqueda
+    google.cerrar()  # Cierra el navegador
+
+if __name__ == "__main__":
+    main()
