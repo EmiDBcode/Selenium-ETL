@@ -8,7 +8,8 @@ Funcionalidades:
 - Guarda una captura de pantalla de los resultados.
 - Cierra el navegador automáticamente.
 
-Este código está diseñado con Programación Orientada a Objetos (POO) para hacerlo modular y reutilizable.
+Este código está diseñado con Programación Orientada a Objetos (POO) para hacerlo modular, reutilizable y escalable. 
+Esto permite agregar nuevas funcionalidades sin modificar la estructura base, facilitando su mantenimiento y expansión.
 """
 
 from selenium import webdriver
